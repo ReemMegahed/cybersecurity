@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cybersecurity Quiz</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 600px;
+      margin: 30px auto;
+      padding: 20px;
+      background-color: #f9f9f9;
+      border-radius: 10px;
+      box-shadow: 0 0 10px #ccc;
+    }
+    h1 {
+      text-align: center;
+    }
+    .question {
+      margin-bottom: 20px;
+      font-size: 1.2em;
+    }
+    .option {
+      display: block;
+      background-color: #eee;
+      border: none;
+      padding: 10px;
+      margin: 8px 0;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1em;
+    }
+    .option:hover {
+      background-color: #ddd;
+    }
+    #feedback {
+      margin-top: 15px;
+      font-weight: bold;
+    }
+    #nextBtn, #restartBtn {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 1em;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    #nextBtn {
+      background-color: #4CAF50;
+      color: white;
+      display: none;
+    }
+    #restartBtn {
+      background-color: #007BFF;
+      color: white;
+      display: none;
+    }
+    .progress-container {
+      width: 100%;
+      background-color: #ddd;
+      border-radius: 20px;
+      overflow: hidden;
+      margin-bottom: 15px;
+    }
+    .progress-bar {
+      height: 20px;
+      background-color: #4CAF50;
+      width: 0%;
+      transition: width 0.3s;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Cybersecurity Quiz</h1>
+  <div class="progress-container">
+    <div class="progress-bar" id="progressBar"></div>
+  </div>
+  <div id="quiz">
+    <div class="question" id="questionText"></div>
+    <div id="options"></div>
+    <div id="feedback"></div>
+    <button id="nextBtn" onclick="nextQuestion()">Next</button>
+    <button id="restartBtn" onclick="restartQuiz()">Restart Quiz</button>
+  </div>
+
+  <script>
+    const questions = [
+      {
+        question: "What is a strong password?",
+        options: ["123456", "Your birthdate", "A mix of letters, numbers, and symbols"],
+        answer: 2
+      },
+      {
+        question: "What should you do if you receive a suspicious email?",
+        options: ["Open it", "Click the links", "Delete it or mark as spam"],
+        answer: 2
+      },
+      {
+        question: "What is two-factor authentication (2FA)?",
+        options: [
+          "A second email account",
+          "Using a password and a code sent to your phone",
+          "Typing your password twice"
+        ],
+        answer: 1
+      }
+    ];
+
+    let current = 0;
+    let score = 0;
+
+    const questionText = document.getElementById("questionText");
+    const optionsDiv = document.getElementById("options");
+    const feedback = document.getElementById("feedback");
+    const nextBtn = document.getElementById("nextBtn");
+    const restartBtn = document.getElementById("restartBtn");
+    const progressBar = document.getElementById("progressBar");
+
+    function loadQuestion() {
+      updateProgressBar();
+      nextBtn.style.display = "none";
+      feedback.textContent = "";
+      const q = questions[current];
+      questionText.textContent = q.question;
+      optionsDiv.innerHTML = "";
+
+      q.options.forEach((opt, index) => {
+        const btn = document.createElement("button");
+        btn.className = "option";
+        btn.textContent = opt;
+        btn.disabled = false;
+        btn.onclick = () => checkAnswer(index, btn);
+        optionsDiv.appendChild(btn);
+      });
+    }
+
+    function checkAnswer(selectedIndex, btn) {
+      const correct = questions[current].answer;
+      const allButtons = document.querySelectorAll(".option");
+
+      allButtons.forEach(b => b.disabled = true);
+
+      if (selectedIndex === correct) {
+        btn.style.backgroundColor = "#c8e6c9";
+        feedback.textContent = "✅ Correct!";
+        score++;
+      } else {
+        btn.style.backgroundColor = "#f8d7da";
+        feedback.textContent = `❌ Incorrect. Correct answer: ${questions[current].options[correct]}`;
+      }
+
+      nextBtn.style.display = "inline-block";
+    }
+
+    function nextQuestion() {
+      current++;
+      if (current < questions.length) {
+        loadQuestion();
+      } else {
+        showFinalScore();
+      }
+    }
+
+    function showFinalScore() {
+      updateProgressBar();
+      questionText.innerHTML = `🎉 Quiz Completed!`;
+      optionsDiv.innerHTML = `<p>Your score: <strong>${score}/${questions.length}</strong></p>`;
+      feedback.textContent = "";
+      nextBtn.style.display = "none";
+      restartBtn.style.display = "inline-block";
+    }
+
+    function restartQuiz() {
+      current = 0;
+      score = 0;
+      restartBtn.style.display = "none";
+      loadQuestion();
+    }
+
+    function updateProgressBar() {
+      const percent = (current / questions.length) * 100;
+      progressBar.style.width = `${percent}%`;
+    }
+
+    loadQuestion();
+  </script>
+</body>
+</html>
