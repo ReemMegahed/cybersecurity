@@ -3,43 +3,146 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Cybersecurity Awareness Quiz</title>
+  <title>Stay Safe Online</title>
   <style>
     body {
       font-family: Arial, sans-serif;
-      text-align: center;
-      padding: 50px;
-      background-color: #f3f3f3;
+      margin: 0;
+      padding: 0;
+      background-color: #f9f9f9;
     }
-    h1 {
+
+    header {
+      background-color: #fff;
+      border-bottom: 1px solid #ddd;
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    nav a {
+      margin-left: 20px;
+      text-decoration: none;
+      color: #333;
+      font-weight: bold;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 60px 20px;
+    }
+
+    .hero h1 {
       font-size: 2em;
       margin-bottom: 20px;
     }
-    p {
-      font-size: 1.1em;
-      margin-bottom: 30px;
-    }
-    a.button {
-      display: inline-block;
+
+    .hero button {
       padding: 12px 25px;
-      font-size: 1.1em;
-      color: white;
+      font-size: 1em;
       background-color: #4CAF50;
-      text-decoration: none;
-      border-radius: 8px;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
     }
-    a.button:hover {
-      background-color: #45a049;
+
+    .grid {
+      display: flex;
+      flex-wrap: wrap;
+      padding: 30px;
+      gap: 20px;
+      justify-content: space-around;
+    }
+
+    .box {
+      background-color: white;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      padding: 20px;
+      flex: 1 1 250px;
+      max-width: 300px;
+    }
+
+    .box h3 {
+      margin-top: 0;
+    }
+
+    .box button {
+      margin-top: 10px;
+      padding: 8px 15px;
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .footer {
+      text-align: center;
+      padding: 15px;
+      background-color: #eee;
+      font-size: 0.9em;
+      margin-top: 30px;
+    }
+
+    .video {
+      width: 100%;
+      height: 150px;
+      background-color: #ddd;
+      border-radius: 6px;
     }
   </style>
 </head>
 <body>
 
-  <h1>Welcome to the Cybersecurity Awareness Quiz</h1>
-  <p>This quiz is designed to help older adults learn the basics of staying safe online.</p>
-  <p>Click the button below to get started:</p>
-  
-  <a class="button" href="quiz.html">Start Quiz</a>
+  <header>
+    <div><strong>Stay Safe Online</strong></div>
+    <nav>
+      <a href="#">Home</a>
+      <a href="#">Learn</a>
+      <a href="quiz_2.html">Quiz</a>
+      <a href="#">Account</a>
+    </nav>
+  </header>
+
+  <div class="hero">
+    <h1>Stay Safe Online: Cybersecurity Made Easy for Everyone</h1>
+    <button onclick="location.href='quiz_2.html'">Start Learning</button>
+  </div>
+
+  <div class="grid">
+    <div class="box">
+      <h3>Cybersecurity Lessons</h3>
+      <p>✏️ What is a scam? <br><button>Read more</button></p>
+      <p>📧 How to spot a fake email <br><button>Read more</button></p>
+      <p>🔐 Password safety <br><button>Read more</button></p>
+    </div>
+
+    <div class="box">
+      <h3>Interactive Quiz Section</h3>
+      <p>Put your knowledge to the test!</p>
+      <button onclick="location.href='quiz_2.html'">Test Your Knowledge</button>
+    </div>
+
+    <div class="box">
+      <h3>Video Tips</h3>
+      <div class="video">[ Video Placeholder ]</div>
+    </div>
+
+    <div class="box">
+      <h3>Accessibility Settings</h3>
+      <button>Set Up</button>
+    </div>
+  </div>
+
+  <div class="footer">
+    <a href="#">Contact</a> | 
+    <a href="#">Privacy Policy</a> | 
+    <a href="#">Help</a> | 
+    <a href="#">Back to top</a>
+  </div>
 
 </body>
 </html>
